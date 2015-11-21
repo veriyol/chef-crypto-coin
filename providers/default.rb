@@ -17,11 +17,15 @@ action :install do
     recursive true
   end
 
-  repo = git(new_resource.name) do
-    repository    new_resource.repository
-    revision      new_resource.revision
-    destination   new_resource.clone_path
-    action        :sync
+  remote_file '/tmp/litecoin.tar.gz' do
+    source new_resource.repository
+    mode '0755'
+    checksum '952c84b181323db17a8fa23217f59b576ad3ebad92c158b3a7c29d458a1130dc'
+  end
+
+  execute 'extract_some_tar' do
+    command 'tar xzvf /tmp/litecoin.tar.gz'
+    cwd new_resource.clone_path
     notifies      :run, "bash[compile #{new_resource.name}]", :immediately
   end
 
