@@ -29,8 +29,6 @@ action :install do
     notifies      :run, "bash[compile #{new_resource.name}]", :immediately
   end
 
-  new_resource.updated_by_last_action(repo.updated_by_last_action?)
-
   src_directory = ::File.join(new_resource.clone_path, 'src')
   conf_file = ::File.join(new_resource.home, "#{new_resource.name}.conf")
 
