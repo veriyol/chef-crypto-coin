@@ -14,10 +14,11 @@ attribute :autostart,       :kind_of => [TrueClass, FalseClass], :default => tru
 attribute :respawn_times,   :kind_of => String, :default => '10'
 attribute :respawn_seconds, :kind_of => String, :default => '60'
 
-attribute :repository,      :kind_of => String, :required => true
+attribute :url,      :kind_of => String, :required => true
 attribute :revision,        :kind_of => String, :default => 'master'
 
 attribute :rpcpassword,    :kind_of => String, :required => true
+attribute :checksum,       :kind_of => String, :required => true
 attribute :rpcport,        :kind_of => Integer
 attribute :port,           :kind_of => Integer, :required => true
 

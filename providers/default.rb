@@ -18,7 +18,7 @@ action :install do
   end
 
   remote_file '/tmp/archive.tar.gz' do
-    source new_resource.repository
+    source new_resource.url
     mode '0755'
     checksum new_resource.checksum
   end
