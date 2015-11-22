@@ -29,7 +29,7 @@ action :install do
     notifies      :run, "bash[compile #{new_resource.name}]", :immediately
   end
 
-  src_directory = ::File.join(new_resource.clone_path, 'src')
+  src_directory = ::File.join(new_resource.clone_path, 'litecoin-0.10.2.2', 'src')
   conf_file = ::File.join(new_resource.home, "#{new_resource.name}.conf")
 
   bash "compile #{new_resource.name}" do
