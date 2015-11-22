@@ -33,7 +33,7 @@ action :install do
   conf_file = ::File.join(new_resource.home, "#{new_resource.name}.conf")
 
   bash "compile #{new_resource.name}" do
-    code          "make -f makefile.unix clean; make -f makefile.unix USE_UPNP= #{new_resource.executable}"
+    code          "bash autogen.sh; bash configure; make; make install"
     cwd           src_directory
     action        :nothing
     notifies      :run, "bash[strip #{new_resource.name}]", :immediately
