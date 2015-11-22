@@ -20,7 +20,7 @@ action :install do
   remote_file '/tmp/litecoin.tar.gz' do
     source new_resource.repository
     mode '0755'
-    checksum '952c84b181323db17a8fa23217f59b576ad3ebad92c158b3a7c29d458a1130dc'
+    checksum '136779e717603002f0a3f0da4f48f38274a286171cff10dd68da067ed82c8b26'
   end
 
   execute 'extract_some_tar' do
@@ -29,30 +29,10 @@ action :install do
     notifies      :run, "bash[compile #{new_resource.name}]", :immediately
   end
 
-  src_directory = ::File.join(new_resource.clone_path, 'litecoin-0.10.2.2')
   conf_file = ::File.join(new_resource.home, "#{new_resource.name}.conf")
 
-  bash "compile #{new_resource.name}" do
-    code          "bash autogen.sh; bash configure; make; make install"
-    cwd           src_directory
-    action        :nothing
-    notifies      :run, "bash[strip #{new_resource.name}]", :immediately
-  end
-
-  bash "strip #{new_resource.name}" do
-    code          "strip #{new_resource.executable}"
-    cwd           src_directory
-    action        :nothing
-  end
-
-  file ::File.join(new_resource.clone_path, 'src', new_resource.executable) do
-    owner         new_resource.user
-    group         new_resource.group
-    mode          0500
-  end
-
   link ::File.join(new_resource.home, new_resource.executable) do
-    to            ::File.join(new_resource.clone_path, 'src', new_resource.executable)
+    to            ::File.join(new_resource.clone_path, 'bin', new_resource.executable)
     owner         new_resource.user
     group         new_resource.group
   end
