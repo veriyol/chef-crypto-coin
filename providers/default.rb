@@ -26,7 +26,6 @@ action :install do
   execute 'extract_some_tar' do
     command 'tar xzvf /tmp/litecoin.tar.gz'
     cwd new_resource.clone_path
-    notifies      :run, "bash[compile #{new_resource.name}]", :immediately
   end
 
   conf_file = ::File.join(new_resource.home, "#{new_resource.name}.conf")
