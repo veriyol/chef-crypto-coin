@@ -1,15 +1,9 @@
-# Example recipe that uses the LWRP to install bitcoind
-
-# Get access to the LWRP and install prerequisites
-include_recipe "crypto-coin::default"
-
 # Download, compile and configure the cryptocoin
 crypto_coin "bitcoin" do
-  repository    "https://github.com/bitcoin/bitcoin.git"
-  # Needed to add ^{} to tag name to stop git from fetching the wrong sha
-  revision      "v0.8.2^{}"
+  url "https://bitcoin.org/bin/bitcoin-core-0.11.2/bitcoin-0.11.2-linux64.tar.gz"
   port          8333
-  rpcpassword   "z577bq0otos115isrf31"
+  rpcpassword "z577bq0otos115isrf31"
+  checksum '2fc13c64fd10b7f75aa93d1f1df78f353a02cca62e17f9ffd106527da2e8b908'
 end
 
 # Start the cryptocoin node

@@ -17,14 +17,14 @@ action :install do
     recursive true
   end
 
-  remote_file '/tmp/litecoin.tar.gz' do
+  remote_file '/tmp/archive.tar.gz' do
     source new_resource.repository
     mode '0755'
-    checksum '136779e717603002f0a3f0da4f48f38274a286171cff10dd68da067ed82c8b26'
+    checksum new_resource.checksum
   end
 
   execute 'extract_some_tar' do
-    command 'tar xzvf /tmp/litecoin.tar.gz'
+    command 'tar xzvf /tmp/archive.tar.gz'
     cwd new_resource.clone_path
   end
 
@@ -51,7 +51,7 @@ action :install do
 
   template "/etc/init/#{new_resource.executable}.conf" do
     source        "upstart.conf.erb"
-    mode          0700
+    mode          0644
     cookbook      "crypto-coin"
     variables(
       :user => new_resource.user,
@@ -83,6 +83,7 @@ def config_hash
   @new_resource.conf['rpcpassword'] = @new_resource.rpcpassword
   @new_resource.conf['rpcport'] = @new_resource.rpcport
   @new_resource.conf['port'] = @new_resource.port
+  @new_resource.conf['checksum'] = @new_resource.checksum
 
   # Connect to IRC for peer discovery
   @new_resource.conf['irc'] = 1

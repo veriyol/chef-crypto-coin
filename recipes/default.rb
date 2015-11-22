@@ -41,5 +41,6 @@ end
 # Required packages
 package "git-core"
 package "libssl-dev"
+package "libdb4.8-dev"
 package "libdb4.8++-dev"
 package "libboost1.48-all-dev"
