@@ -1,6 +1,7 @@
 # Download, compile and configure the cryptocoin
 crypto_coin "bitcoin" do
   url "https://bitcoin.org/bin/bitcoin-core-0.11.2/bitcoin-0.11.2-linux64.tar.gz"
+  version "0.11.2"
   port 8333
   rpcport 18332
   rpcpassword "1234"

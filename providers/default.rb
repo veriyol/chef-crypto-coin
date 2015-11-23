@@ -29,9 +29,10 @@ action :install do
   end
 
   conf_file = ::File.join(new_resource.home, "#{new_resource.name}.conf")
+  install_path = ::File.join(new_resource.clone_path, "#{new_resource.name}-#{new_resource.version}")
 
   link ::File.join(new_resource.home, new_resource.executable) do
-    to            ::File.join(new_resource.clone_path, 'bin', new_resource.executable)
+    to            ::File.join(install_path, 'bin', new_resource.executable)
     owner         new_resource.user
     group         new_resource.group
   end
@@ -83,7 +84,6 @@ def config_hash
   @new_resource.conf['rpcpassword'] = @new_resource.rpcpassword
   @new_resource.conf['rpcport'] = @new_resource.rpcport
   @new_resource.conf['port'] = @new_resource.port
-  @new_resource.conf['checksum'] = @new_resource.checksum
 
   # Connect to IRC for peer discovery
   @new_resource.conf['irc'] = 1

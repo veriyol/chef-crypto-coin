@@ -19,6 +19,7 @@ attribute :revision,        :kind_of => String, :default => 'master'
 
 attribute :rpcpassword,    :kind_of => String, :required => true
 attribute :checksum,       :kind_of => String, :required => true
+attribute :version,        :kind_of => String, :required => true
 attribute :rpcport,        :kind_of => Integer
 attribute :port,           :kind_of => Integer, :required => true
 
