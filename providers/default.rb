@@ -84,6 +84,7 @@ def config_hash
   @new_resource.conf['rpcpassword'] = @new_resource.rpcpassword
   @new_resource.conf['rpcport'] = @new_resource.rpcport
   @new_resource.conf['port'] = @new_resource.port
+  @new_resource.conf['testnet'] = @new_resource.testnet
 
   # Connect to IRC for peer discovery
   @new_resource.conf['irc'] = 1

@@ -22,5 +22,6 @@ attribute :checksum,       :kind_of => String, :required => true
 attribute :version,        :kind_of => String, :required => true
 attribute :rpcport,        :kind_of => Integer
 attribute :port,           :kind_of => Integer, :required => true
+attribute :testnet,        :kind_of => Integer, :default => 1
 
 attr_accessor :exists
