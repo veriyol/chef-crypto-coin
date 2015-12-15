@@ -11,5 +11,5 @@ end
 # Start the cryptocoin node
 service "litecoind" do
   provider Chef::Provider::Service::Upstart
-  action :start
+  action :enable
 end
