@@ -76,6 +76,7 @@ def set_default_attributes
   @new_resource.clone_path(@new_resource.clone_path || ::File.join('/opt', 'crypto_coins', @new_resource.name))
   @new_resource.data_dir(@new_resource.data_dir || ::File.join(@new_resource.home, 'data'))
   @new_resource.autostart(@new_resource.autostart)
+  @new_resource.testnet(@new_resource.testnet)
   @new_resource.respawn_times(@new_resource.respawn_times)
   @new_resource.respawn_seconds(@new_resource.respawn_seconds)
 end
